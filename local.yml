@@ -47,7 +47,6 @@
          - gh
          - cmatrix
        state: present
-     when: inventory_hostname in groups["Desktop"] + groups["WSL"]
 
    - name: Install Snap tools for Desktops and Laptops
      snap:
