@@ -1,0 +1,113 @@
+- name: Patching and Updating Linux Systems
+  hosts: all
+  become: yes
+
+  tasks:
+
+   - name: Update all host/vm packages
+     apt:
+       update_cache: true
+       cache_valid_time: 3600
+       name: "*"
+       state: latest
+
+   - name: Upgrade all host/vm packages
+     apt:
+       upgrade: full
+       state: latest
+       autoremove: yes
+
+   - name: Install Apt tools for Desktops and Laptops
+     apt:
+       name:
+         - awscli
+         - bashtop
+         - speedtest-cli
+         - curl
+         - ansiweather
+         - python3-pip
+         - weather-util
+         - tmux
+         - libpam-u2f
+         - mosquitto
+         - exa
+         - duf
+         - bat
+         - git
+         - ctop
+         - ncal
+         - khal
+         - tree
+         - mc
+         - zsh
+         - neofetch
+           #   - snapd
+         - yadm
+         - nmap
+         - gh
+         - cmatrix
+       state: present
+     when: inventory_hostname in groups["Desktop"] + groups["WSL"]
+
+   - name: Install Snap tools for Desktops and Laptops
+     snap:
+       name:
+         - tldr
+         - gping
+         - cointop
+         - lazygit
+         - bandwhich
+       state: present
+     when: inventory_hostname in groups["Desktop"]
+
+   - name: Remove Snaps that should be Flatpaks
+     snap:
+       name:
+         - postman
+         - zotero-snap
+         - signal-desktop
+         - bitwarden
+         - slack
+         - code
+         - obsidian
+       state: absent
+     when: inventory_hostname in groups["Desktop"]
+
+   - name: Add the flathub flatpak repository remote to the user installation
+     community.general.flatpak_remote:
+       name: FlatpakHub
+       state: present
+       flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+     when: inventory_hostname in groups["Desktop"]
+
+   - name: Install global Flatpaks
+     flatpak:
+       remote: FlatpakHub
+       name:
+         - org.signal.Signal
+         - one.flipperzero.qFlipper
+         - md.obsidian.Obsidian
+         - com.visualstudio.code
+         - com.google.Chrome
+         - com.getpostman.Postman
+         - com.bitwarden.desktop
+         - org.zotero.Zotero
+     when: inventory_hostname in groups["Desktop"]
+
+   - name: Update Flatpaks
+     shell:
+       cmd: flatpak update --noninteractive
+     when: inventory_hostname in groups["Desktop"]
+
+   - name: Install Pip packages
+     pip:
+       name:
+         - bio
+         - nextstrain-cli
+         - gget
+     when: inventory_hostname in groups["Desktop"] + groups["WSL"]
+
+   - name: Update TLDR;
+     shell:
+       cmd: tldr -u
+     when: inventory_hostname in groups["Desktop"]
