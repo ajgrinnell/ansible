@@ -1,5 +1,6 @@
 - name: Patching and Updating Linux Systems
-  hosts: all
+  hosts: localhost
+  connection: local
   become: yes
 
   tasks:
@@ -41,7 +42,6 @@
          - mc
          - zsh
          - neofetch
-           #   - snapd
          - yadm
          - nmap
          - gh
@@ -52,7 +52,6 @@
    - name: Install Snap tools for Desktops and Laptops
      snap:
        name:
-         - tldr
          - gping
          - cointop
          - lazygit
@@ -106,8 +105,3 @@
          - nextstrain-cli
          - gget
      when: inventory_hostname in groups["Desktop"] + groups["WSL"]
-
-   - name: Update TLDR;
-     shell:
-       cmd: tldr -u
-     when: inventory_hostname in groups["Desktop"]
