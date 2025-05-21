@@ -34,7 +34,7 @@
          - duf
          - bat
          - git
-         - ctop
+        # - ctop
          - ncal
          - khal
          - tree
