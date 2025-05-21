@@ -21,7 +21,6 @@
    - name: Install Apt tools for Desktops and Laptops
      apt:
        name:
-         - awscli
          - bashtop
          - speedtest-cli
          - curl
