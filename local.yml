@@ -30,7 +30,7 @@
          - tmux
          - libpam-u2f
          - mosquitto
-         - exa
+        # - exa
          - duf
          - bat
          - git
