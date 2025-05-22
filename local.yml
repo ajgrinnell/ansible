@@ -45,42 +45,6 @@
          - cmatrix
        state: present
 
-   - name: Install Snap tools for Desktops and Laptops
-     snap:
-       name:
-         - gping
-         - cointop
-         - lazygit
-         - bandwhich
-       state: present
-     when: inventory_hostname in groups["Desktop"]
-
-   - name: Add the flathub flatpak repository remote to the user installation
-     community.general.flatpak_remote:
-       name: FlatpakHub
-       state: present
-       flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-     when: inventory_hostname in groups["Desktop"]
-
-   - name: Install global Flatpaks
-     flatpak:
-       remote: FlatpakHub
-       name:
-         - org.signal.Signal
-         - one.flipperzero.qFlipper
-         - md.obsidian.Obsidian
-         - com.visualstudio.code
-         - com.google.Chrome
-         - com.getpostman.Postman
-         - com.bitwarden.desktop
-         - org.zotero.Zotero
-     when: inventory_hostname in groups["Desktop"]
-
-   - name: Update Flatpaks
-     shell:
-       cmd: flatpak update --noninteractive
-     when: inventory_hostname in groups["Desktop"]
-
    - name: Install UV
      shell:
        cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -93,10 +57,10 @@
      shell:
        cmd: curl -sS https://starship.rs/install.sh | sh
        
-   - name: Install Pip packages
-     pip:
-       name:
-         - bio
-         - nextstrain-cli
-         - gget
-     when: inventory_hostname in groups["Desktop"] + groups["WSL"]
+ #  - name: Install Pip packages
+ #    pip:
+ #      name:
+ #        - bio
+ #        - nextstrain-cli
+ #        - gget
+ #    when: inventory_hostname in groups["Desktop"] + groups["WSL"]
