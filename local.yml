@@ -56,7 +56,7 @@
 
    - name: Install Starship
      shell:
-       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
+       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y | echo 'eval "$(starship init zsh)"' >> $HOME/.zshrc
        
  #  - name: Install Pip packages
  #    pip:
