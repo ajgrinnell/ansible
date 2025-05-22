@@ -96,6 +96,18 @@
        cmd: flatpak update --noninteractive
      when: inventory_hostname in groups["Desktop"]
 
+   - name: Install UV
+     shell:
+       cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+   - name: Install Oh My ZSH!
+     shell:
+       cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+   - name: Install Oh My ZSH!
+     shell:
+       cmd: curl -sS https://starship.rs/install.sh | sh
+       
    - name: Install Pip packages
      pip:
        name:
