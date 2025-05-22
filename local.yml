@@ -53,9 +53,9 @@
      shell:
        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-   - name: Install Oh My ZSH!
+   - name: Install Starship
      shell:
-       cmd: curl -sS https://starship.rs/install.sh | sh
+       cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y
        
  #  - name: Install Pip packages
  #    pip:
