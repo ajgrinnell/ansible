@@ -30,11 +30,9 @@
          - tmux
          - libpam-u2f
          - mosquitto
-        # - exa
          - duf
          - bat
          - git
-        # - ctop
          - ncal
          - khal
          - tree
@@ -55,19 +53,6 @@
          - lazygit
          - bandwhich
        state: present
-     when: inventory_hostname in groups["Desktop"]
-
-   - name: Remove Snaps that should be Flatpaks
-     snap:
-       name:
-         - postman
-         - zotero-snap
-         - signal-desktop
-         - bitwarden
-         - slack
-         - code
-         - obsidian
-       state: absent
      when: inventory_hostname in groups["Desktop"]
 
    - name: Add the flathub flatpak repository remote to the user installation
