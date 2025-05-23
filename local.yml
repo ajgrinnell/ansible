@@ -43,7 +43,13 @@
          - nmap
          - gh
          - cmatrix
+         - stow
        state: present
+
+  - name: change user shell to zsh 
+    user:
+      name: "{{ the_user }}"
+      shell: /bin/zsh
 
    - name: Install UV
      shell:
@@ -53,15 +59,7 @@
      shell:
        cmd: '[ -d "$HOME/.oh-my-zsh" ] || curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh'
 
-
    - name: Install Starship
      shell:
        cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y | echo 'eval "$(starship init zsh)"' >> $HOME/.zshrc
-       
- #  - name: Install Pip packages
- #    pip:
- #      name:
- #        - bio
- #        - nextstrain-cli
- #        - gget
- #    when: inventory_hostname in groups["Desktop"] + groups["WSL"]
+
