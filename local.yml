@@ -30,6 +30,7 @@
          - tmux
          - libpam-u2f
          - mosquitto
+         - mosquitto-clients
          - duf
          - bat
          - git
