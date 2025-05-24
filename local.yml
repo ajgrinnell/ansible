@@ -56,11 +56,10 @@
      shell:
        cmd: curl -LsSf https://astral.sh/uv/install.sh | sh
 
-   - name: Install Oh My ZSH!
-     shell:
-       cmd: '[ -d "$HOME/.oh-my-zsh" ] || curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh'
-
    - name: Install Starship
      shell:
        cmd: curl -sS https://starship.rs/install.sh | sh -s -- -y | echo 'eval "$(starship init zsh)"' >> $HOME/.zshrc
 
+   - name: Install Oh My ZSH!
+     shell:
+       cmd: '[ -d "$HOME/.oh-my-zsh" ] || curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh'
