@@ -45,6 +45,7 @@
          - gh
          - cmatrix
          - stow
+         - ubuntu-advantage-tools
        state: present
 
   - name: change user shell to zsh 
