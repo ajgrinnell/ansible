@@ -48,10 +48,10 @@
          - ubuntu-advantage-tools
        state: present
 
-  - name: change user shell to zsh 
-    user:
-      name: "{{ the_user }}"
-      shell: /bin/zsh
+   - name: change user shell to zsh 
+     user:
+       name: "{{ the_user }}"
+       shell: /bin/zsh
 
    - name: Install UV
      shell:
